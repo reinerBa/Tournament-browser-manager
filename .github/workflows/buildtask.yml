@@ -1,5 +1,9 @@
 name: build project with vite
 on: push
+permissions:
+  contents: read
+  pages: write
+  id-token: write
 jobs:
   setup-project:
     name: setup
