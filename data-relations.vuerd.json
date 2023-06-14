@@ -1,0 +1,423 @@
+{
+  "canvas": {
+    "version": "2.2.11",
+    "width": 2000,
+    "height": 2000,
+    "scrollTop": -40.80000000000003,
+    "scrollLeft": -140.80000000000004,
+    "zoomLevel": 1,
+    "show": {
+      "tableComment": true,
+      "columnComment": true,
+      "columnDataType": true,
+      "columnDefault": true,
+      "columnAutoIncrement": false,
+      "columnPrimaryKey": true,
+      "columnUnique": false,
+      "columnNotNull": true,
+      "relationship": true
+    },
+    "database": "MySQL",
+    "databaseName": "",
+    "canvasType": "ERD",
+    "language": "GraphQL",
+    "tableCase": "pascalCase",
+    "columnCase": "camelCase",
+    "highlightTheme": "VS2015",
+    "bracketType": "none",
+    "setting": {
+      "relationshipDataTypeSync": true,
+      "relationshipOptimization": false,
+      "columnOrder": [
+        "columnName",
+        "columnDataType",
+        "columnNotNull",
+        "columnUnique",
+        "columnAutoIncrement",
+        "columnDefault",
+        "columnComment"
+      ]
+    },
+    "pluginSerializationMap": {}
+  },
+  "table": {
+    "tables": [
+      {
+        "name": "Participant",
+        "comment": "",
+        "columns": [
+          {
+            "name": "",
+            "comment": "",
+            "dataType": "",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "734a25de-bf91-4d03-89b1-c99004e92907"
+          },
+          {
+            "name": "",
+            "comment": "",
+            "dataType": "",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": true,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": true,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "1ffb6cd1-9872-4310-9544-eb6e0f63d928"
+          }
+        ],
+        "ui": {
+          "active": false,
+          "left": 198.4,
+          "top": 508.8,
+          "zIndex": 53,
+          "widthName": 63.419921875,
+          "widthComment": 60
+        },
+        "visible": true,
+        "id": "0c974c47-30bb-4f98-abab-60f6a2a20020"
+      },
+      {
+        "name": "Match",
+        "comment": "",
+        "columns": [
+          {
+            "name": "",
+            "comment": "",
+            "dataType": "",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": true,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "8a5e5a9e-afd9-441e-b163-33ffe47b870d"
+          },
+          {
+            "name": "",
+            "comment": "",
+            "dataType": "",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": true,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "9c6138c3-9f90-4de5-9c61-8cef2f1ce4b0"
+          }
+        ],
+        "ui": {
+          "active": true,
+          "left": 749.6,
+          "top": 109.6,
+          "zIndex": 63,
+          "widthName": 60,
+          "widthComment": 60
+        },
+        "visible": true,
+        "id": "d1dd8b46-80e6-42fc-ab47-0b758550a47c"
+      },
+      {
+        "name": "Scores",
+        "comment": "",
+        "columns": [
+          {
+            "name": "",
+            "comment": "",
+            "dataType": "",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": true,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": true,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "17507679-4b81-4a19-a940-6a97d4831cb9"
+          }
+        ],
+        "ui": {
+          "active": false,
+          "left": 753.6,
+          "top": 456.8,
+          "zIndex": 56,
+          "widthName": 60,
+          "widthComment": 60
+        },
+        "visible": true,
+        "id": "b65359d6-ea26-40cb-95d0-61cf198b787a"
+      },
+      {
+        "name": "WeightList",
+        "comment": "",
+        "columns": [
+          {
+            "name": "",
+            "comment": "",
+            "dataType": "",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": true,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "25e89765-feef-4af6-bf9b-f3e0925a7825"
+          },
+          {
+            "name": "",
+            "comment": "",
+            "dataType": "",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": true,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": true,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "c56a52a6-7e81-452b-a1fe-681c3e263272"
+          }
+        ],
+        "ui": {
+          "active": false,
+          "left": 202.4,
+          "top": 292,
+          "zIndex": 57,
+          "widthName": 62.455078125,
+          "widthComment": 60
+        },
+        "visible": true,
+        "id": "945ec4f0-e0fa-427c-8144-c0f93f567cbc"
+      },
+      {
+        "name": "Tournament",
+        "comment": "",
+        "columns": [
+          {
+            "name": "",
+            "comment": "",
+            "dataType": "",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": true,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "f32f0673-35e7-4be6-b15a-55d6cce21ff0"
+          }
+        ],
+        "ui": {
+          "active": false,
+          "left": 203.2,
+          "top": 111.2,
+          "zIndex": 58,
+          "widthName": 70.64990234375,
+          "widthComment": 60
+        },
+        "visible": true,
+        "id": "a8bbcd1a-ca1d-4025-87da-fc576311aa9d"
+      }
+    ],
+    "indexes": []
+  },
+  "memo": {
+    "memos": []
+  },
+  "relationship": {
+    "relationships": [
+      {
+        "identification": false,
+        "relationshipType": "OneN",
+        "startRelationshipType": "Dash",
+        "start": {
+          "tableId": "0c974c47-30bb-4f98-abab-60f6a2a20020",
+          "columnIds": [
+            "1ffb6cd1-9872-4310-9544-eb6e0f63d928"
+          ],
+          "x": 371.9,
+          "y": 508.8,
+          "direction": "top"
+        },
+        "end": {
+          "tableId": "945ec4f0-e0fa-427c-8144-c0f93f567cbc",
+          "columnIds": [
+            "25e89765-feef-4af6-bf9b-f3e0925a7825"
+          ],
+          "x": 375.9,
+          "y": 402,
+          "direction": "bottom"
+        },
+        "constraintName": "fk_participant_to_weightlist",
+        "visible": true,
+        "id": "4da8bb4d-79d8-4d97-b9c4-ffc54d7c9ab3"
+      },
+      {
+        "identification": false,
+        "relationshipType": "OneOnly",
+        "startRelationshipType": "Dash",
+        "start": {
+          "tableId": "b65359d6-ea26-40cb-95d0-61cf198b787a",
+          "columnIds": [
+            "17507679-4b81-4a19-a940-6a97d4831cb9"
+          ],
+          "x": 927.1,
+          "y": 456.8,
+          "direction": "top"
+        },
+        "end": {
+          "tableId": "d1dd8b46-80e6-42fc-ab47-0b758550a47c",
+          "columnIds": [
+            "8a5e5a9e-afd9-441e-b163-33ffe47b870d"
+          ],
+          "x": 923.1,
+          "y": 219.6,
+          "direction": "bottom"
+        },
+        "constraintName": "fk_scores_to_match",
+        "visible": true,
+        "id": "a47aa395-fe82-438b-b6d0-58f61abeff67"
+      },
+      {
+        "identification": false,
+        "relationshipType": "OneN",
+        "startRelationshipType": "Dash",
+        "start": {
+          "tableId": "0c974c47-30bb-4f98-abab-60f6a2a20020",
+          "columnIds": [
+            "1ffb6cd1-9872-4310-9544-eb6e0f63d928"
+          ],
+          "x": 545.4,
+          "y": 563.8,
+          "direction": "right"
+        },
+        "end": {
+          "tableId": "d1dd8b46-80e6-42fc-ab47-0b758550a47c",
+          "columnIds": [
+            "9c6138c3-9f90-4de5-9c61-8cef2f1ce4b0"
+          ],
+          "x": 749.6,
+          "y": 164.6,
+          "direction": "left"
+        },
+        "constraintName": "fk_participant_to_match",
+        "visible": true,
+        "id": "a01dbd33-645e-406e-9763-35083abf925b"
+      },
+      {
+        "identification": false,
+        "relationshipType": "OneN",
+        "startRelationshipType": "Dash",
+        "start": {
+          "tableId": "945ec4f0-e0fa-427c-8144-c0f93f567cbc",
+          "columnIds": [
+            "c56a52a6-7e81-452b-a1fe-681c3e263272"
+          ],
+          "x": 375.9,
+          "y": 292,
+          "direction": "top"
+        },
+        "end": {
+          "tableId": "a8bbcd1a-ca1d-4025-87da-fc576311aa9d",
+          "columnIds": [
+            "f32f0673-35e7-4be6-b15a-55d6cce21ff0"
+          ],
+          "x": 376.7,
+          "y": 200.7,
+          "direction": "bottom"
+        },
+        "constraintName": "fk_weightlist_to_tournament",
+        "visible": true,
+        "id": "17444f78-115f-40ad-b4e4-0d137a4e5867"
+      }
+    ]
+  }
+}

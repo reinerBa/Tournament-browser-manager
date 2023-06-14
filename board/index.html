@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/icon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Judo Anzeige board</title>
+
+   <!-- CSS Reset --> 
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">   
+   <link rel="stylesheet" href="/assets/milligram.css">
+
+    <style>#preload{margin: 1em; font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;}
+    @keyframes spinner {to {transform: rotate(360deg);}} 
+    .spinner:before {
+      content: '';
+      box-sizing: border-box;
+      position: absolute;
+      top: 140px;
+      left: 100px;
+      width: 10vw;
+      height: 10vw;
+      margin-top: -10px;
+      margin-left: -10px;
+      border-radius: 50%;
+      border: 1px solid #f6f;
+      border-top-color: #0e0;
+      border-right-color: #0dd;
+      border-bottom-color: #f90;
+      animation: spinner .6s linear infinite;
+    }</style>
+  </head>
+  <body>
+    <noscript>Bitte aktivieren Sie JavaScript für eine korrekte Darstellung der Seite!</noscript>
+    <div id="preload">
+      <h1>Lade Anwendung</h1>
+      <div class="spinner"></div>
+    </div>
+    <div id="app"></div>
+    <script type="module" src="./main.ts"></script>
+  </body>
+</html>
