@@ -1,0 +1,42 @@
+name: build project with vite
+on: push
+jobs:
+  setup-project:
+    name: setup
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v3.4.1
+      - name: install dependencies 
+        working-directory: ./
+        run: npm ci
+      - uses: actions/cache@v3.0.11
+        id: restore-deps
+        with:
+          path: ./*
+          key: ${{ github.sha }}
+
+  build-project:
+    name: build SPA
+    needs: setup-project
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/setup-node@v3.4.1
+      - uses: actions/cache@v3.0.11
+        id: restore-deps
+        with:
+          path: ./*
+          key: ${{ github.sha }}
+      - name: build SPA
+        working-directory: ./
+        run: npm run build
+      - uses: actions/upload-artifact@v3
+        with:
+          name: builded-SPA
+          path: dist/
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist

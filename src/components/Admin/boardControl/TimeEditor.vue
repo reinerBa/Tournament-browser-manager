@@ -28,7 +28,6 @@ export default defineComponent({
   }},
   methods:{
     updateValues(){
-      console.log('updateValues')
       if(this.fightRunning) this.boardStore.decreaseFightSecounds()
       if(this.isOsaikomiWhite) this.boardStore.increaseOsaikomiWhite()
       if(this.isOsaikomiBlue) this.boardStore.increaseOsaikomiBlue()

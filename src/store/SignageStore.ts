@@ -15,8 +15,7 @@ export const useSignageStore = defineStore('signage', {
   }),
   actions: {
     addMatch (match: Match) {
-      const num = this.Matches.push(match)
-      match.nr = num
+      this.Matches.push(match)
     },
     addParticipant (p: Participant) {
       this.Participants.push(p)

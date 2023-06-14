@@ -1,6 +1,7 @@
 import { UserConfigExport, ConfigEnv } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import fs from 'fs'
+import { resolve } from 'path'
 
 export default ({ command, mode }: ConfigEnv): UserConfigExport => {
   const packageJson = fs.readFileSync('./package.json')
@@ -10,6 +11,14 @@ export default ({ command, mode }: ConfigEnv): UserConfigExport => {
 return {
   build: {
     minify: false,
+    rollupOptions: {
+      input: {
+        main: resolve(__dirname, 'index.html'),
+        admin: resolve(__dirname, 'admin/index.html'),
+        board: resolve(__dirname, 'board/index.html'),
+        signage: resolve(__dirname, 'signage/index.html'),
+      },
+    },
   },
   base: './',
   plugins: [vue()],
