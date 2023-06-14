@@ -37,7 +37,7 @@ export default defineComponent({
     <div style="width: min-content">
       <p v-for="(url, idx) in urls" :key="idx+'url'" @click="iframeUrl=url"><button :href="url">{{ url }}</button></p>
     </div>
-    <iframe v-if="iframeUrl" :src="'/'+iframeUrl+ '/index.html'" ref=iframe width="100%" height="100%"></iframe>
+    <iframe v-if="iframeUrl" :src="'./'+iframeUrl+ '/index.html'" ref=iframe width="100%" height="100%"></iframe>
   </div>
 </template>
 
