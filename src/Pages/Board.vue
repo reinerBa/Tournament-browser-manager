@@ -21,15 +21,19 @@ export default defineComponent({
     <div class="metarow">
       <div class="turnament" :class="{'small': signageStore.turnamentName}">
         <span v-if="signageStore.turnamentName">{{signageStore.turnamentName }}<br/> </span>
-        {{signageStore.nextFight?.weightClass?.ageName}} {{signageStore.nextFight?.weightClass?.weightName}} 
+        <div v-if="!boardStore.boardOnlyMode">{{signageStore.nextFight?.weightClass?.ageName}} {{signageStore.nextFight?.weightClass?.weightName}} </div>
       </div>
       <div class="matte">{{ signageStore.Matte }}</div>
       <sec-timer :secounds="boardStore.fightSecounds" class="fighttime" :style="{color: boardStore.fightTimeColor}"/>
     </div>
     
-    <player-row v-if="signageStore.nextFight"
+    <player-row v-if="!boardStore.boardOnlyMode && signageStore.nextFight"
       :participantWhite="signageStore.nextFight?.pWhite" 
       :participantBlue="signageStore.nextFight?.pBlue" 
+    />
+    <player-row v-else-if="boardStore.boardOnlyMode"
+    :participantWhite="{name: '', verein:''}"
+    :participantBlue="{name: '', verein:''}"
     />
 </div>
 </template>

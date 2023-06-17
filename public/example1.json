@@ -1,0 +1,16 @@
+{
+	"participants": [
+		{
+			"name": "John Johnson",
+			"verein": "BVB",
+			"ageClass": "U11",
+			"weight": "29"
+		},
+		{
+			"name": "Jim Jimson",
+			"verein": "KVB",
+			"ageClass": "U11",
+			"weight": "29"
+		}
+	]
+}

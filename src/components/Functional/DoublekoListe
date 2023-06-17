@@ -1,0 +1,103 @@
+<script lang="ts">
+import { defineComponent, PropType } from 'vue'
+import { Participant } from '../../Models/Participant'
+import { ListMatch } from './EoneListe.vue'
+export default defineComponent({
+  props: {
+    participants:{
+  //      required: true,
+      default: [
+        {name: 'hans', verein: 'ko', ageClass: 'U11'},
+        {name: 'ji', verein: 'ko', ageClass: 'U11'},
+        {name: 'jim', verein: 'ko', ageClass: 'U11'},
+        {name: 'jim', verein: 'ko', ageClass: 'U11'},
+        {name: 'jim', verein: 'ko', ageClass: 'U11'},
+        {name: 'jim', verein: 'ko', ageClass: 'U11'},
+        {name: 'jim', verein: 'ko', ageClass: 'U11'},
+        {name: 'jim', verein: 'ko', ageClass: 'U11'},
+        {name: 'jim', verein: 'ko', ageClass: 'U11'},
+        {name: 'jim', verein: 'ko', ageClass: 'U11'},
+        {name: 'jim', verein: 'ko', ageClass: 'U11'},
+        {name: 'jim', verein: 'ko', ageClass: 'U11'},
+        {name: 'Ann', verein: 'ko', ageClass: 'U11'}
+      ] as Participant[],
+      type: Object as PropType<Participant[]>,
+    },
+    matchOrder: {default: []}
+  },
+  computed: {
+    pSize(): number { return this.participants.length},
+    columns(): number {
+      let size = 1
+      while(Math.pow(2, size) < this.participants.length) size++
+      return size
+    },
+    matches() {
+      if(this.matchOrder.length) return this.matchOrder
+
+      let idx = 0
+      let m: ListMatch[] = Array(this.columns)
+      for(let i = 0; i < this.pSize; i+=2)
+        m[i] =  this.participants[idx++]
+
+        for(let j = 0+1; j < this.pSize; j++){
+          let newVal = i < j ? `${i}:${j}` : `${j}:${i}`
+          if (!m.includes(newVal) && i !== j) m.push(newVal)
+        }
+      
+      for(let i = 1; i < m.length; i++)
+        if (m[i-1].split(':').findIndex(v => m[i].includes(v)) !== -1) {
+          let lastIdx = m.map(el => el.split(':').findIndex(v => m[i-1].includes(v)) === -1).indexOf(true, i+1)
+          m.splice(i, 0, ...m.splice(lastIdx, 1))
+        }
+      if (this.pSize === 5) m.splice(0, 0, ...m.splice(-1, 1))
+
+      return m
+    }
+  },
+  methods:{
+    getCellNumber(i: number, j: number): number { return this.matches.findIndex(el => (i < j ? `${i}:${j}` : `${j}:${i}`) === el)+1},
+    getParticipants(m: string): string {
+      const counterparties = m.split(':').map((pNumber: string) => this.participants[Number.parseInt(pNumber)].name)
+      return `${counterparties[0]} vs. ${counterparties[1]}`
+    },
+    getParticipant(nr: string): string {
+      return this.participants[Number.parseInt(nr)].name
+    },
+/*    hasBottomBorder(firstIdx, secoundIdx): boolean { 
+
+    }*/
+  }
+})
+</script>
+
+<template>
+  <table class="pool">
+    <thead><tr><td colspan="2"></td>
+      <td v-for="fs in columns" :key="'k' + fs">Runde{{fs}}</td>
+    </tr></thead>
+    <tbody>
+      <template v-for="(cIdx, idx) in 2**columns" :key="'kowl' + idx">
+        <tr >
+          <td style="width: 1em;">{{ idx +1 }}</td>
+          <td class="name border-left">{{ participants[cIdx]?.name }} ({{ participants[cIdx]?.verein }})</td>
+          <td :class="{'no-border': idx%2!==0, 'border-left': (idx+1)%3===0 || (idx+2)%4===0 || (idx)===1}"></td>
+          <td v-if="idx%2===0" rowspan="2" :class="{'no-border': idx%2===0 && idx%4!==0}"></td>
+          <td v-if="idx%4===0 && idx !== pSize/2" rowspan="5"></td>
+          <td v-if="idx%8===0 && idx !== pSize/2" rowspan="10"></td>
+        </tr>
+        <tr v-if="(1+idx)%2==0"><td class="no-border"></td></tr>
+      </template>
+    </tbody>
+  </table>
+
+</template>
+
+<style lang="stylus" scoped>
+td.small
+  max-width 1em
+.no-border
+  border none
+.border-left
+  border-right 0.1rem solid #e1e1e1
+</style>

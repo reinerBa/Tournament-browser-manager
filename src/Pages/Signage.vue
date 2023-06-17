@@ -6,7 +6,7 @@ import { mapActions, mapStores } from 'pinia'
 import { useSignageStore } from '../store/SignageStore'
 import NextMatches from '../components/Admin/NextMatchesList.vue'
 export default defineComponent({
-  components: { NextMatches },
+components: { NextMatches },
   beforeCreate(){
     document.getElementById('preload')?.remove()
   },

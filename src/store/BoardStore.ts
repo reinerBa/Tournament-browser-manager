@@ -3,6 +3,7 @@ import { Participant } from '../Models/Participant'
 
 export const useBoardStore = defineStore('board', {
   state: () => ({
+    boardOnlyMode: true,
     ipponWhite: 0,
     ipponBlue: 0,
     wazaWhite: 0,
@@ -24,6 +25,19 @@ export const useBoardStore = defineStore('board', {
     Participants: [] as Participant[]
   }),
   actions: {
+    resetBoard () {
+      this.fightSecounds = this.defaultFightTime
+      this.ipponWhite = 0
+      this.ipponBlue = 0
+      this.wazaWhite = 0
+      this.wazaBlue = 0
+      this.shidoWhite = 0
+      this.shidoBlue = 0
+      this.hansoWhite = false
+      this.hansoblue = false
+      this.osaikomiWhite = 0
+      this.osaikomiBlue = 0
+    },
     setShidoWhite (val: boolean) {
       if (val) this.shidoWhite++
       else this.shidoWhite--
@@ -66,6 +80,7 @@ export const useBoardStore = defineStore('board', {
     setHansoBlue (val: boolean) {
       this.hansoblue = val
     },
+    setBoardOnlyMode (val: boolean) { this.boardOnlyMode = val },
     setMax (ippons: number = 0, wazas: number = 0, shidos: number = 0) {
       if (ippons > 0) this.maxIppons = ippons
       if (wazas > 0) this.maxWazaAris = wazas
@@ -84,9 +99,9 @@ export const useBoardStore = defineStore('board', {
     },
     restoreFighttime () { this.fightSecounds = this.defaultFightTime },
     restoreOsaikomiWhite () { this.osaikomiWhite = 0 },
-    restoreOsaikomiBlue () { this.osaikomiBlue = 0},
-    increaseOsaikomiWhite (millisecs: number = 0.500) { this.osaikomiWhite += millisecs },
-    increaseOsaikomiBlue (millisecs: number = 0.500) { this.osaikomiBlue += millisecs }
+    restoreOsaikomiBlue () { this.osaikomiBlue = 0 },
+    increaseOsaikomiWhite (millisecs: number = 0.500) { if (this.osaikomiWhite < this.osaikomiIppon) this.osaikomiWhite += millisecs },
+    increaseOsaikomiBlue (millisecs: number = 0.500) { if (this.osaikomiBlue < this.osaikomiIppon) this.osaikomiBlue += millisecs }
   },
   getters: {
   },

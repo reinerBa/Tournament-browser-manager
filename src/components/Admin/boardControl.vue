@@ -6,9 +6,10 @@ import { useBoardStore } from '../../store/BoardStore'
 import SecTimer from '../Functional/SecTimer.vue'
 import ScoreEditor from './boardControl/ScoreEditor.vue'
 import TimeEditor from './boardControl/TimeEditor.vue'
+import ToggleButton from '../Functional/ToggleButton.vue'
 
 export default defineComponent({
-  components: { SecTimer, ScoreEditor, TimeEditor },
+  components: { SecTimer, ScoreEditor, TimeEditor, ToggleButton },
   computed: {
     ...mapStores(useSignageStore, useBoardStore),
   }
@@ -16,7 +17,10 @@ export default defineComponent({
 </script>
 
 <template>
-  <h3>Board Controls</h3>
+  <div class="title">
+    <h3>Board Controls</h3>
+    <toggle-button v-model="boardStore.boardOnlyMode" optionOne="Turniermodus" optionTwo="Anzeige ohne Namen" @update:modelValue="boardStore.setBoardOnlyMode($event)"/>
+  </div>
   <div>
     <time-editor/>
 
@@ -27,5 +31,7 @@ export default defineComponent({
 </template>
 
 <style lang="stylus" scoped>
-
+.title
+  display flex
+  justify-content space-between
 </style>

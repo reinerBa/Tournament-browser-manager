@@ -19,7 +19,7 @@ export default defineComponent({
       <div><label class="inline">Turniername:
         <div style="display:flex;">        
         <input v-model="signageStore.turnamentName" @change="signageStore.setTurnamentName(signageStore.turnamentName)" type="text" list="tnames" />
-        <button @click="signageStore.setTurnamentName('')" class="material-icons">close</button>
+        <button @click="signageStore.setTurnamentName('')" class="material-icons">delete</button>
       </div>
       </label>
     </div>

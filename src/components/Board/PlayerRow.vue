@@ -26,7 +26,7 @@ export default defineComponent({
   <div class="player white">
     <div class="ident">
       <div>{{ participantWhite.name }}</div> 
-      <div class="verein">({{ participantWhite.verein }})</div>
+      <div v-if="participantWhite.verein" class="verein">({{ participantWhite.verein }})</div>
       <div v-if="boardStore.osaikomiWhite" class="osaikomi">{{Math.floor(boardStore.osaikomiWhite)}}</div>
     </div>
     <div class="scores">
@@ -44,7 +44,7 @@ export default defineComponent({
   <div class="player blue">
     <div class="ident">
       <div>{{ participantBlue.name }}</div> 
-      <div class="verein">({{ participantBlue.verein }})</div>
+      <div  v-if="participantBlue.verein" class="verein">({{ participantBlue.verein }})</div>
       <div v-if="boardStore.osaikomiBlue" class="osaikomi">{{ Math.floor(boardStore.osaikomiBlue) }}</div>
     </div>
     <div class="scores">
