@@ -24,6 +24,7 @@ components: { NextMatches },
 
 <template>
   <h3>Als nächstes auf Matte {{ signageStore.Matte }}</h3>
+  <!--<double-liste/>-->
   <div class="matches">
     <next-matches />
   </div>
