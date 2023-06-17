@@ -21,9 +21,7 @@ export default defineComponent({
     intervalNr: 0,
     fightTime: 0,
     fightRunning: false,
-    osaikomiWhite: 0,
     isOsaikomiWhite: false,
-    osaikomiBlue: 0,
     isOsaikomiBlue: false
   }},
   methods:{
@@ -34,12 +32,12 @@ export default defineComponent({
     },
     startFightTime(){ this.fightRunning = true },
     pauseFightTime(){ this.fightRunning = false },
-    stopFightTime(){ this.fightRunning = false, this.boardStore.restoreFighttime() },
-    startOsaikomiWhite() { this.isOsaikomiWhite = true },
+    stopFightTime(){ this.fightRunning = false, this.boardStore.resetBoard() },
+    startOsaikomiWhite() { this.boardStore.restoreOsaikomiWhite(), this.isOsaikomiWhite = true, this.isOsaikomiBlue = false, this.pauseOsaikomiBlue() },
     stopOsaiKomiWhite(){ this.isOsaikomiWhite = false, this.boardStore.restoreOsaikomiWhite() },
-    pauseOsaikomiWhite(){ this.isOsaikomiWhite = false },
-    startOsaikomiBlue() { this.isOsaikomiBlue = true },
-    pauseOsaikomiBlue(){ this.isOsaikomiBlue = false},
+    pauseOsaikomiWhite(){ this.isOsaikomiWhite = false; if(this.boardStore.osaikomiWhite < this.boardStore.osaikomiWaza) this.boardStore.restoreOsaikomiWhite() },
+    startOsaikomiBlue() { this.boardStore.restoreOsaikomiBlue(), this.isOsaikomiBlue = true, this.pauseOsaikomiWhite() },
+    pauseOsaikomiBlue(){ this.isOsaikomiBlue = false; if(this.boardStore.osaikomiBlue < this.boardStore.osaikomiWaza) this.boardStore.restoreOsaikomiBlue()},
     stopOsaiKomiBlue(){ this.isOsaikomiBlue = false, this.boardStore.restoreOsaikomiBlue()  }
   }
 })
@@ -53,21 +51,21 @@ export default defineComponent({
           <td><div>
             <button v-if="!fightRunning" @click="startFightTime" class="material-icons">play_arrow</button>
             <button v-else @click="pauseFightTime" class="material-icons">pause</button>
-            <button @click="stopFightTime" class="button-outline material-icons">stop</button>
+            <button @click="stopFightTime" class="button-outline material-icons">refresh</button>
         </div></td></tr>
         <tr><td>Osaikomi Weiß</td>
           <td><sec-timer :secounds="boardStore.osaikomiWhite"/></td>
           <td><div>
             <button v-if="!isOsaikomiWhite" @click="startOsaikomiWhite" class="material-icons">play_arrow</button>
-            <button v-else @click="pauseOsaikomiWhite" class="material-icons">pause</button>
-            <button @click="stopOsaiKomiWhite" class="button-outline material-icons">stop</button>
+            <button v-else @click="pauseOsaikomiWhite" class="material-icons">stop</button>
+            <button v-show="boardStore.osaikomiWhite" @click="stopOsaiKomiWhite" class="button-outline material-icons">refresh</button>
         </div></td></tr>
         <tr><td>Osaikomi Blau</td>
           <td><sec-timer :secounds="boardStore.osaikomiBlue"/></td>
           <td><div>
             <button v-if="!isOsaikomiBlue" @click="startOsaikomiBlue" class="material-icons">play_arrow</button>
-            <button v-else @click="pauseOsaikomiBlue" class="material-icons">pause</button>
-            <button @click="stopOsaiKomiBlue" class="button-outline material-icons">stop</button>
+            <button v-else @click="pauseOsaikomiBlue" class="material-icons">stop</button>
+            <button v-show="boardStore.osaikomiBlue" @click="stopOsaiKomiBlue" class="button-outline material-icons">refresh</button>
         </div></td></tr>
       </tbody>
     </table>

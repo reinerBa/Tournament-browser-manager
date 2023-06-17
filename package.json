@@ -2,12 +2,12 @@
   "name": "judo-browser-manager",
   "author": "Reiner Bamberger (https://github.com/reinerBa)",
   "description": "A little tool for sport matches",
+  "version": "0.2.0",
   "repository": {
     "type": "git", 
     "url": ""
   },
   "license": "EUPL-1.2",
-  "version": "0.1.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
