@@ -7,6 +7,7 @@ import EoneListe from '../components/Functional/EoneListe.vue'
 import BestOfThreeListe from '../components/Functional/BestOfThreeListe.vue'
 import DoublekoListe from '../components/Functional/Doublekotree-List.vue'
 import ControllButtons from '../components/ListManager/ControllButtons.vue'
+import examples from '../components/ListManager/examples'
 
 export default defineComponent({
   components: { EoneListe, DoublekoListe, BestOfThreeListe, ControllButtons },
@@ -19,9 +20,10 @@ export default defineComponent({
   },
   async beforeMount() {
     if(this.params.example) {
-      const response = await fetch('/'+this.params.example)
-      const data = await response.json()
-      this.readData(data)
+      this.readData(examples[Number.parseInt(this.params.example as string)])
+      //const response = await fetch('/'+this.params.example)
+      //const data = await response.json()
+      //this.readData(data)
     }
   },
   data(){

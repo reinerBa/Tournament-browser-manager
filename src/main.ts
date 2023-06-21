@@ -31,4 +31,6 @@ function addPlugins (app: App<Element>): void {
     type: 'localstorage'
   }))
   app.use(pinia)
+
+  app.provide<string>('app-version', version)
 }
