@@ -16,6 +16,7 @@ return {
         main: resolve(__dirname, 'index.html'),
         admin: resolve(__dirname, 'admin/index.html'),
         board: resolve(__dirname, 'board/index.html'),
+        listmanager: resolve(__dirname, 'Listmanager/index.html'),
         signage: resolve(__dirname, 'signage/index.html'),
       },
     },

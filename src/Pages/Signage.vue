@@ -5,8 +5,9 @@ import { defineComponent } from 'vue'
 import { mapActions, mapStores } from 'pinia'
 import { useSignageStore } from '../store/SignageStore'
 import NextMatches from '../components/Admin/NextMatchesList.vue'
+//import DoubleListe from '../components/Functional/DoublekoTree.vue'
 export default defineComponent({
-components: { NextMatches },
+components: { NextMatches,  },
   beforeCreate(){
     document.getElementById('preload')?.remove()
   },
@@ -24,7 +25,7 @@ components: { NextMatches },
 
 <template>
   <h3>Als nächstes auf Matte {{ signageStore.Matte }}</h3>
-  <!--<double-liste/>-->
+
   <div class="matches">
     <next-matches />
   </div>

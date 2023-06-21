@@ -9,8 +9,7 @@ export default defineComponent({
     optionOne: {type: String, default: ''},
     optionTwo: {type: String, default: ''}
   },
-  emits: ['update:modelValue'],
-  computed: { }
+  emits: ['update:modelValue']
 })
 </script>
 

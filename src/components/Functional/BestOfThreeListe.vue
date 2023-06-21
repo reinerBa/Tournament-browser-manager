@@ -32,8 +32,7 @@ export default defineComponent({
       type: Object as PropType<Participant[]>,
     },
     showMatches: {default: true},
-    matchOrder: {default: []},
-    edit: {default: false}
+    matchOrder: {default: []}
   },
   data(){return{editName: '', editVerein: ''}},
   computed: {
@@ -42,43 +41,29 @@ export default defineComponent({
       if(this.matchOrder.length) return this.matchOrder
 
       let m: string[] = []
-      for(let i = 0; i < this.pSize; i++)
-        for(let j = 0+1; j < this.pSize; j++){
-          let newVal = i < j ? `${i}:${j}` : `${j}:${i}`
-          if (!m.includes(newVal) && i !== j) m.push(newVal)
-        }
-      
-      for(let i = 1; i < m.length; i++)
-        if (m[i-1].split(':').findIndex(v => m[i].includes(v)) !== -1) {
-          let lastIdx = m.map(el => el.split(':').findIndex(v => m[i-1].includes(v)) === -1).indexOf(true, i+1)
-          m.splice(i, 0, ...m.splice(lastIdx, 1))
-        }
-      if (this.pSize === 5) m.splice(0, 0, ...m.splice(-1, 1))
+      new Array(3).fill(1).forEach(v => m.push(`${0}:${1}`))
 
       return m
     }
   },
   methods:{
-    getCellNumber(i: number, j: number): number { return this.matches.findIndex(el => (i < j ? `${i}:${j}` : `${j}:${i}`) === el)+1},
+    getCellNumber(i: number, j: number, round: number): number { return round + this.matches.findIndex(el => (i < j ? `${i}:${j}` : `${j}:${i}`) === el)+1},
     getParticipants(m: string): string {
       const counterparties = m.split(':').map((pNumber: string) => this.participants[Number.parseInt(pNumber)].name)
       return `${counterparties[0]} vs. ${counterparties[1]}`
     },
     getParticipant(nr: string): string {
       return this.participants[Number.parseInt(nr)].name
-    },
-    emitNewP() {
-      this.$emit('new', {'name': this.editName, 'verein': this.editVerein})
-      this.editName = this.editVerein = ''
     }
   }
 })
 </script>
 
 <template>
+  <h5>Best-of-three-System</h5>
   <table class="pool">
     <thead><tr><td colspan="2"></td>
-      <td v-for="fs in pSize" :key="'k' + fs">{{fs}}</td>
+      <td colspan="2">1</td><td colspan="2">2</td><td colspan="2">Falls unentschieden</td>
       <td>Punkte</td><td>Platz</td>
     </tr></thead>
     <tbody>
@@ -86,19 +71,18 @@ export default defineComponent({
         <td class="name">{{ p.name }} <span v-show="p.verein">({{ p.verein }})</span></td>
         <td style="width: 1em;">{{ idx +1 }}</td>
         <td v-for="fs in pSize" :key="idx + '-' + fs" class="match" :class="{'hit': (1+ idx === fs)}">
-          <i>{{ getCellNumber(idx, fs-1) }}</i></td>
+          <i>{{ getCellNumber(idx, fs-1, 0) }}</i></td>
+          <td v-for="fs in pSize" :key="idx + '-' + fs" class="match" :class="{'hit': (1+ idx === fs)}">
+          <i>{{ getCellNumber(idx, fs-1, 1) }}</i></td>
+          <td v-for="fs in pSize" :key="idx + '-' + fs" class="match" :class="{'hit': (1+ idx === fs)}">
+          <i>{{ getCellNumber(idx, fs-1, 2) }}</i></td>
         <td class="score"></td><td class="score"></td>
       </tr>
-      <tr v-if="edit">
-        <td><input v-model="editName" type="text" placeholder="Name" />
-          <input v-model="editVerein" type="text" placeholder="Verein" /></td>
-          <td><button @click="emitNewP" style="padding: 0 0.4rem;" class="material-icons">add</button></td>
-        <td :colspan="pSize+2"></td></tr>
     </tbody>
   </table>
   <div v-if="showMatches">
     <div></div>
-    <table style="width: fit-content;">
+    <table>
       <tr v-for="(m, idx) in matches" :key="idx + 'fLi'" >
         <td class="small">{{ idx+1 }}.</td>
         <td>{{ getParticipant(m[0]) }}</td>
@@ -111,6 +95,10 @@ export default defineComponent({
 </template>
 
 <style lang="stylus" scoped>
+h5
+  margin-top 2rem
+  margin-bottom 0
+  margin-bottom 0.5rem
 table.pool
   max-width 100%
   width fit-content

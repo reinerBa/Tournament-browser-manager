@@ -34,6 +34,7 @@ export default defineComponent({
     <button @click="curView='board'" :class="{'button-outline': curView != 'board'}">Board</button>
     <button @click="curView = 'matches'" :class="{'button-outline': curView != 'matches'}">Kämpfe</button>
     <button @click="curView = 'players'" :class="{'button-outline': curView != 'players'}">Teilnehmer</button>
+    <button @click="curView = 'tournament'" :class="{'button-outline': curView != 'tournament'}">Turnier</button>
     <button @click="curView = 'teams'" :class="{'button-outline': curView != 'teams'}">Mannschaften</button>
     <button @click="curView = 'meta'" :class="{'button-outline': curView != 'meta'}">Meta</button>
   </nav>
@@ -56,6 +57,9 @@ export default defineComponent({
   <main v-if="curView === 'teams'">
     <weight-lists/>
     <participants-list/>
+  </main>
+  <main v-if="curView === 'tournament'">
+    <h1>Turnierverwaltung</h1>
   </main>
 </template>
 

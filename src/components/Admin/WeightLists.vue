@@ -8,9 +8,10 @@ import { WeightClass } from '../../Models/WeightClass'
 import ImportParticipants from './ImportParticipants.vue'
 import { WeightList } from '../../Models/WeightList'
 import ParticipantsList from './ParticipantsList.vue'
+import EoneListe from '../Functional/EoneListe.vue'
 
 export default defineComponent({
-  components: { ImportParticipants, ParticipantsList },
+  components: { ImportParticipants, ParticipantsList, EoneListe },
   data(){return{
     newWeightClass: false,
     newWeightClassAge: '',
@@ -78,6 +79,7 @@ export default defineComponent({
     <div v-if="choosenWeightList">
       <h5>{{ choosenWeightList.participants.length }} Teilnehmer in Gewichtsklasse {{ choosenWeightList && (choosenWeightList.weightClass.ageName +' '+  choosenWeightList.weightClass.weightName) }} </h5>
       <participants-list :weight-list="choosenWeightList"/>
+      <eone-liste :participants="choosenWeightList.participants" />
     </div>
   </div>
 </template>

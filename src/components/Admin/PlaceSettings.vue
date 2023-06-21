@@ -37,8 +37,8 @@ export default defineComponent({
     <div><label class="inline">Wettkampfzeit Farbe <input type="color" v-model="boardStore.fightTimeColor" @change="boardStore.setFightTimeColor(boardStore.fightTimeColor)" /></label></div>
   </div>
   <details>
-   <summary>Kampfsettings</summary>
-   <div></div>
+   <summary>Tafel Shortcuts</summary>
+   <div><label>Kampfzeit anhalten<input type="text"/></label></div>
 </details>
 </template>
 
