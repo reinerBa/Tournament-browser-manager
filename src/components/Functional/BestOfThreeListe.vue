@@ -82,7 +82,7 @@ export default defineComponent({
   </table>
   <div v-if="showMatches">
     <div></div>
-    <table>
+    <table style="width: fit-content;">
       <tr v-for="(m, idx) in matches" :key="idx + 'fLi'" >
         <td class="small">{{ idx+1 }}.</td>
         <td>{{ getParticipant(m[0]) }}</td>

@@ -19,7 +19,7 @@ export default defineComponent({
   },
   async beforeMount() {
     if(this.params.example) {
-      const response = await fetch('./'+this.params.example)
+      const response = await fetch('/'+this.params.example)
       const data = await response.json()
       this.readData(data)
     }
