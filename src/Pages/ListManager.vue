@@ -8,10 +8,13 @@ import BestOfThreeListe from '../components/Functional/BestOfThreeListe.vue'
 import DoublekoListe from '../components/Functional/Doublekotree-List.vue'
 import ControllButtons from '../components/ListManager/ControllButtons.vue'
 import examples from '../components/ListManager/examples'
+import favicon from '../icon.png'
+import { useFavicon } from '@vueuse/core'
 
 export default defineComponent({
   components: { EoneListe, DoublekoListe, BestOfThreeListe, ControllButtons },
   setup(){
+    useFavicon(favicon)
     const params = useUrlSearchParams('history')
     return {params}
   },
@@ -19,12 +22,8 @@ export default defineComponent({
     document.getElementById('preload')?.remove()
   },
   async beforeMount() {
-    if(this.params.example) {
+    if(this.params.example)
       this.readData(examples[Number.parseInt(this.params.example as string)])
-      //const response = await fetch('/'+this.params.example)
-      //const data = await response.json()
-      //this.readData(data)
-    }
   },
   data(){
     return {

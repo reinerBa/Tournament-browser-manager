@@ -1,20 +1,4 @@
 <script lang="ts">
-export class ListMatch{
-  matchIdx: number
-  whiteNr: number
-  blueNr: number
-  winnerNr: number
-  winnerName?: string
-  whiteName?: string
-  blueName?: string
-  winnerScore: number
-  constructor(whiteNr: number, blueNr: number, matchIdx: number){
-    this.matchIdx = matchIdx ,this.whiteNr = whiteNr < blueNr? whiteNr: blueNr, this.blueNr= blueNr > whiteNr ? blueNr: whiteNr, this.winnerNr= -1, this.winnerScore= -1}
-  get Indexes(){ return [this.whiteNr, this.blueNr] }
-  isEqual(el: ListMatch): boolean { return el.whiteNr === this.whiteNr && el.blueNr === this.blueNr }
-  doesOverlapp(el: ListMatch): boolean { return el.whiteNr === this.whiteNr || el.blueNr === this.blueNr || el.blueNr === this.whiteNr || el.whiteNr === this.blueNr }
-}
-
 
 import { defineComponent, PropType } from 'vue'
 import { Participant } from '../../Models/Participant'
@@ -33,7 +17,8 @@ export default defineComponent({
     },
     showMatches: {default: true},
     matchOrder: {default: []},
-    edit: {default: false}
+    edit: {default: false},
+    title: {default: ''}
   },
   data(){return{editName: '', editVerein: ''}},
   computed: {
@@ -77,7 +62,7 @@ export default defineComponent({
 
 <template>
   <table class="pool">
-    <thead><tr><td colspan="2"></td>
+    <thead><tr><td colspan="2">{{ title }}</td>
       <td v-for="fs in pSize" :key="'k' + fs">{{fs}}</td>
       <td>Punkte</td><td>Platz</td>
     </tr></thead>

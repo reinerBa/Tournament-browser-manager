@@ -54,7 +54,7 @@ export default defineComponent({
       ] as Participant[],
       type: Object as PropType<Participant[]>,
     },
-    matchOrder: {default: []}
+    matchOrder: {default: [] as Participant[], type: Object as PropType<Participant[]>}
   },
   data(){return{
     //matchesDone: []
@@ -69,11 +69,12 @@ export default defineComponent({
     rows(): number {
       return 2**this.columns
     },
-    participantMatchOrder(): Participant[]{
+    participantMatchOrder(): Participant[] {
+      if(this.matchOrder.length) return this.matchOrder
       const pArr = [...this.participants]
       let idx = 0
 
-      let ma= new Array(this.rows)
+      let ma = new Array(this.rows)
       for(let i = 0; i < ma.length; i+=2)
         ma[i] = pArr.pop()
 
@@ -83,8 +84,7 @@ export default defineComponent({
       }
       return ma
     },    
-    matchesTree() {
-      if(this.matchOrder.length) return this.matchOrder
+    matchesTree(): MatchTree[][] {
 
       const a: MatchTree[][] = []
       a[0]= [] as MatchTree[]
@@ -111,11 +111,15 @@ export default defineComponent({
     getParticipant(nr: string): string {
       return this.participants[Number.parseInt(nr)].name
     },
-
+    getMatchNumber(idx: number, level: number) {
+      let match = this.matchesTree[level][idx / 2**level]
+      if(match?.p) return 0
+      return match?.waitPos
+    },
     getWinner(idx: number, level: number) {
       let match = this.matchesTree[level][idx / 2**level]
       if(match?.p) return match.p.name
-      return `${match?.waitPos}. Kampf`
+      return ''
     },
     getParticipantFromMatch(idx: number): Participant | null {
       return this.matchesTree[0][idx]?.p
@@ -131,27 +135,34 @@ export default defineComponent({
       if (((idx + 2**(secoundIdx-1) )/ (2**secoundIdx)) %2 ===1) 
         return true
       return false
+    },
+    getRound(idx: number) {
+      if(idx === this.columns) return 'Finale'
+      else if (idx === this.columns-1) return 'Halbfinale'
+      return `Runde ${idx}`
     }
   }
 })
 </script>
 
 <template>
-  <table class="pool">
-    <thead v-show="false"><tr><td colspan="2"></td>
-      <td v-for="fs in columns" :key="'k' + fs">Runde{{fs}}</td>
+  <table class="liste">
+    <thead ><tr><td colspan="2" style="border: 0;"></td>
+      <td v-for="fs in columns" :key="'k' + fs">{{getRound(fs)}}</td>
     </tr></thead>
     <tbody>
       <template v-for="(_, idx) in 2**columns" :key="'kowl' + idx">
         <tr >
           <td class="border-top" style="width: 1em;">{{ idx +1 }}</td>
-          <td class="name border-right" :class="{'border-top': idx%2===0}">{{ getParticipantFromMatch(idx)?.name }} ({{getParticipantFromMatch(idx)?.verein }})</td>
+          <td class="name border-right" :class="{'border-top': idx%2===0, 'dark-bg': !getParticipantFromMatch(idx)}">
+            {{ getParticipantFromMatch(idx)?.name }} <span v-if="getParticipantFromMatch(idx)?.verein">({{getParticipantFromMatch(idx)?.verein }})</span>
+          </td>
           
           <template v-for="(__, idx1) in columns" :key="`${__}-${idx}`" >
             <td v-if="rows >= 2**idx1 &&  idx % 2**idx1===0" 
               :rowspan="2**idx1 * 1.5" class="td-spacer" :data-order="`${idx}-${idx1}`"
               :class="{'td-match': hasBottomBorder(idx, __), 'border-right': hasRightBorder(idx, __)}"
-              >{{getWinner(idx, idx1+1)}}
+              ><div v-if="getMatchNumber(idx, idx1+1)" class="matchNum">{{ getMatchNumber(idx, idx1+1) }}</div>{{getWinner(idx, idx1+1)}}
             </td>
           </template>
         </tr>
@@ -162,8 +173,10 @@ export default defineComponent({
 </template>
 
 <style lang="stylus" scoped>
-.pool
+.liste
   max-width 70vw
+.dark-bg
+  background repeating-linear-gradient(45deg, lightgrey, lightgrey 1px, white 1px, white 7px)
 td.small
   max-width 1em
 .td-spacer
@@ -175,6 +188,18 @@ td.small
   border-bottom 0.1rem solid #e1e1e1
   vertical-align bottom
   color black
+  position relative
+  min-width 4em
+.matchNum
+  position absolute
+  left 0
+  bottom 0
+  background-color #b3b3b3
+  color white
+  font-size large
+  padding 0 0.5rem
+  border-left 0
+  border-bottom 0  
 .border-top
   border-top 0.1rem solid #e1e1e1
 </style>

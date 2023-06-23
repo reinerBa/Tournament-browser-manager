@@ -1,3 +1,4 @@
+import 'milligram/dist/milligram.css'
 import { App, createApp, h } from 'vue'
 // @ts-expect-error
 import MyApp from '../src/Pages/ListManager.vue'
