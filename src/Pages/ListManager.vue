@@ -102,37 +102,41 @@ export default defineComponent({
    <summary>Listeneinstellungen</summary>
 
    <div class="flex">
-    <label>Listenname<input type="text" v-model="listName" placeholder="Listenname"/></label>
+    <input type="text" v-model="listName" placeholder="Listenname"/>
     <span class="only-print">{{ listName }}</span>
     <span class="only-print">{{ listMeta }}</span>
     <span v-if="participants.length < 2" class="only-print">{{ participants.length }} TeilnehmerInnen eingetragen</span>
 
-    <label>Listen Metdaten<input type="text" v-model="listMeta" placeholder="Turnier - Alter - Gewicht"/></label>
+    <input type="text" v-model="listMeta" placeholder="Listenmetadaten: Turnier - Alter - Gewicht"/>
     <controll-buttons @clearAll="clearAll" @import="readData" :content="exportData" />
-    </div>
+
+    <template v-for="(el, idx) in systemTypes" :key="'sty'+idx">
+      <label ><input type="radio" :value="el.value" v-model="systemPicked" />
+        {{ el.name }}</label>
+    </template>
+  </div>
    
-   <div class="flex"><template v-for="(el, idx) in systemTypes" :key="'sty'+idx">
-    <label ><input type="radio" :value="el.value" v-model="systemPicked" />
-     {{ el.name }}</label>
-   </template></div>
+   <div class="flex">
+
+    </div>
   </details>
 
   <details open :class="{'no-print': dontPrintList}">
     <summary>TeilnehmerInnen-Verwaltung</summary>
     <h5><span v-if="!isEdit">Hinzufügen</span><span v-else>Bearbeiten</span></h5>
     <div class="flex">
-      <button v-if="isEdit" @click="saveEditParticipant" class="material-icons primary" title="Speichern" :disabled="!newName && !newVerein">save</button>
-      <button v-if="isEdit" @click="clearMeta()" class="material-icons primary" title="Abbrechen">cancel</button>
-      <button v-else @click="saveParticipant" class="material-icons primary" :disabled="!newName && !newVerein" title="Hinzufügen">save</button>
       <input @keypress.enter="saveParticipant" v-model="newName" type="text" placeholder="Name"/>
       <input @keypress.enter="saveParticipant"  v-model="newVerein" type="text" list="vereine" placeholder="Verein"/>
       <datalist id="vereine">
         <option v-for="(as, idx) in vereine" :key="'ve'+idx" :value="as" />
       </datalist>
+      <button v-if="isEdit" @click="saveEditParticipant" class="material-icons primary" title="Speichern" :disabled="!newName && !newVerein">save</button>
+      <button v-if="isEdit" @click="clearMeta()" class="material-icons primary" title="Abbrechen">cancel</button>
+      <button v-else @click="saveParticipant" class="material-icons primary" :disabled="!newName && !newVerein" title="Teilnehmer Hinzufügen">save</button>
     </div>
     <div class="flex">
       <h5>TeilnehmerInnen-Liste</h5>
-      <button @click="dontPrintList = !dontPrintList" class="material-icons primary">
+      <button @click="dontPrintList = !dontPrintList" class="material-icons primary" title="Teilnehmerliste (nicht) drucken">
         <span v-if="dontPrintList">print_disabled</span><span v-else>print</span>
       </button>
     </div>

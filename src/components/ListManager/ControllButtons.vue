@@ -71,7 +71,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <div>
+  <div class="inline">
     <!--<button @click="saveBrowser" class="material-icons primary" title="Liste speichern im Browser">save</button>
     <button @click="openFromBrowser" class="material-icons primary" title="Öffnen vom Browser">file_open</button>-->
     <button @click="saveAs" class="material-icons primary" title="Liste speichern auf Festplatte">download_for_offline</button>
@@ -82,5 +82,6 @@ export default defineComponent({
 </template>
 
 <style lang="stylus" scoped>
-
+.inline
+  display inline-flex
 </style>

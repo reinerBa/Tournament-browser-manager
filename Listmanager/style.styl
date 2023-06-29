@@ -20,10 +20,19 @@ button:hover
 .flex
   display flex
   justify-content space-between
+  flex-wrap wrap
   button
     align-self center
+  input
+    max-width 42%
+  input[type="text"]
+    min-width 300px
 input, button
   margin .75rem .5rem
 
 td:first-child, th:first-child
   padding-left 1rem
+
+@media only screen and (max-width: 700px)
+  .flex input 
+    max-width 100vw
