@@ -8,6 +8,6 @@
 ![EUPL-1.2](https://img.shields.io/badge/license-EUPL--1.2-blue)
 
 # Demo
-Das Listenerstellungsmodul alleine kann hier verwendet werden [demo-link](http://reiner.bamberger.rocks/Tournament-browser-manager/Listmanager/?example=0)
+Das Listenerstellungsmodul alleine kann hier verwendet werden [demo-link](https://reiner.bamberger.rocks/Tournament-browser-manager/Listmanager/?example=0)
 Erstellte Listen können gedruckt, heruntergeladen und gespeicherte json-Dateien hochgeladen werden. Unterstützt werden aktuell das Jeder-gegen-Jeden-System und Doppel-KO (ohne Trostrunde, wip)
 
